@@ -21,6 +21,9 @@ public:
 	virtual void Init() override;
 
 	UFUNCTION(Exec)
+	void LoadMenu();
+
+	UFUNCTION(Exec)
 	void Host();
 
 	UFUNCTION(Exec)
