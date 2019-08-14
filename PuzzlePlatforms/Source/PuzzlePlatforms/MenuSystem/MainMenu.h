@@ -13,5 +13,11 @@ UCLASS()
 class PUZZLEPLATFORMS_API UMainMenu : public UUserWidget
 {
 	GENERATED_BODY()
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* Host;
+
+	UPROPERTY(meta = (BindWidget))
+	class UButton* Join;
 	
 };
