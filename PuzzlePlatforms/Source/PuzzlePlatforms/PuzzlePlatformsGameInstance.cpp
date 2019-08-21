@@ -29,6 +29,7 @@ void UPuzzlePlatformsGameInstance::LoadMenu() {
 	UUserWidget* Menu = CreateWidget<UUserWidget>(this, MenuClass);
 	if (!ensure(Menu != nullptr)) { return; }
 
+	Menu->bIsFocusable = true;
 	Menu->AddToViewport();
 
 	APlayerController* PlayerController = GetFirstLocalPlayerController();
