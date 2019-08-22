@@ -41,6 +41,25 @@ void UMainMenu::Setup() {
 
 }
 
+void UMainMenu::OnLevelRemovedFromWorld(ULevel * InLevel, UWorld * InWorld) {
+	
+	Super::OnLevelRemovedFromWorld(InLevel, InWorld);
+
+	this->RemoveFromViewport();
+
+	UWorld* World = GetWorld();
+	if (!ensure(World != nullptr)) { return; }
+
+	APlayerController* PlayerController = World->GetFirstPlayerController();
+	if (!ensure(PlayerController != nullptr)) { return; }
+
+	FInputModeGameOnly InputModeData;
+	PlayerController->SetInputMode(InputModeData);
+
+	PlayerController->bShowMouseCursor = false;
+
+}
+
 void UMainMenu::HostServer() {
 	
 	if (MenuInterface != nullptr) {

@@ -27,7 +27,7 @@ void UPuzzlePlatformsGameInstance::Init() {
 void UPuzzlePlatformsGameInstance::LoadMenu() {
 	if (!ensure(MenuClass != nullptr)) { return; }
 
-	UMainMenu* Menu = CreateWidget<UMainMenu>(this, MenuClass);
+	Menu = CreateWidget<UMainMenu>(this, MenuClass);
 	if (!ensure(Menu != nullptr)) { return; }
 
 	Menu->Setup();
@@ -35,6 +35,7 @@ void UPuzzlePlatformsGameInstance::LoadMenu() {
 }
 
 void UPuzzlePlatformsGameInstance::Host() {
+
 	UEngine* Engine = GetEngine();
 	if (!ensure(Engine != nullptr)) { return; }
 
