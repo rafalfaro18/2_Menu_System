@@ -16,6 +16,9 @@ bool UMainMenu::Initialize() {
 	if (!ensure(JoinButton != nullptr)) { return false; }
 	JoinButton->OnClicked.AddDynamic(this, &UMainMenu::OpenJoinMenu);
 
+	if (!ensure(CancelJoinMenuButton != nullptr)) { return false; }
+	CancelJoinMenuButton->OnClicked.AddDynamic(this, &UMainMenu::OpenMainMenu);
+
 	return true;
 }
 
@@ -74,4 +77,10 @@ void UMainMenu::OpenJoinMenu() {
 	if (!ensure(MenuSwitcher != nullptr)) { return; }
 	if (!ensure(JoinMenu != nullptr)) { return; }
 	MenuSwitcher->SetActiveWidget(JoinMenu);
+}
+
+void UMainMenu::OpenMainMenu() {
+	if (!ensure(MenuSwitcher != nullptr)) { return; }
+	if (!ensure(MainMenu != nullptr)) { return; }
+	MenuSwitcher->SetActiveWidget(MainMenu);
 }
