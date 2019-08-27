@@ -26,49 +26,7 @@ bool UMainMenu::Initialize() {
 	return true;
 }
 
-void UMainMenu::SetMenuInterface(IMenuInterface* MenuInterface) {
-	this->MenuInterface = MenuInterface;
-}
 
-void UMainMenu::Setup() {
-	
-	this->bIsFocusable = true;
-	this->AddToViewport();
-
-	UWorld* World = GetWorld();
-	if (!ensure(World != nullptr)) { return; }
-
-	APlayerController* PlayerController = World->GetFirstPlayerController();
-	if (!ensure(PlayerController != nullptr)) { return; }
-
-	FInputModeUIOnly FInputModeData;
-	FInputModeData.SetWidgetToFocus(this->TakeWidget());
-	FInputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-
-	PlayerController->SetInputMode(FInputModeData);
-
-	PlayerController->bShowMouseCursor = true;
-
-}
-
-void UMainMenu::OnLevelRemovedFromWorld(ULevel * InLevel, UWorld * InWorld) {
-	
-	Super::OnLevelRemovedFromWorld(InLevel, InWorld);
-
-	this->RemoveFromViewport();
-
-	UWorld* World = GetWorld();
-	if (!ensure(World != nullptr)) { return; }
-
-	APlayerController* PlayerController = World->GetFirstPlayerController();
-	if (!ensure(PlayerController != nullptr)) { return; }
-
-	FInputModeGameOnly InputModeData;
-	PlayerController->SetInputMode(InputModeData);
-
-	PlayerController->bShowMouseCursor = false;
-
-}
 
 void UMainMenu::HostServer() {
 	
